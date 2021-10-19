@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vault.html</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<style type="text/css">
+		*{
+			margin-left: 0;
+			margin-top: 0;
+			padding-left: 0;
+			padding-top: 0;
+		}
+		body{
+			 font-family: "Roboto", sans-serif;
+			 font-weight: bold;
+		}
+		::selection{
+			background: rgba(255, 3, 96, 0.5);
+
+		}
+		::placeholder{
+			color: #A7A7A7;
+		}
+		.wrapper{
+			position: absolute;
+    		top: 50%;
+	    	left: 50%;
+	    	margin-right: -50%;
+	    	transform: translate(-50%);
+	    	width: 170px;
+	    	z-index: 4;
+
+		}
+		#password{
+			box-sizing: border-box;
+			width: 100%;
+			color: #A7A7A7;
+			font-size: 40px;
+			text-align: center;
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+		#name{
+			box-sizing: border-box;
+			width: 100%;
+			margin-top: 35px;
+			color: #A7A7A7;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+
+
+		#lockWrapper {
+			position: absolute;
+    		top: 50%;
+	    	left: 50%;
+	    	margin-right: -50%;
+	    	transform: translate(-50%, -38%);
+	    	z-index: 3;
+		}
+		#spacerRect {
+			position: absolute;
+    		top: 50%;
+	    	left: 50%;
+	    	margin-right: -50%;
+	    	transform: translate(-50%, -38%);
+	    	z-index: 2;
+		}
+		#ringWrapper{
+			position: absolute;
+    		top: 50%;
+	    	left: 50%;
+	    	margin-right: -50%;
+	    	transform: translate(-50%, -50%);
+	    	margin-top: -65px;
+
+	    	z-index: 1;
+		}
+
+
+
+		#secondPage{
+			width: 100vw;
+			height: 100vh;
+			padding: 20px 20px;
+			display: none; 
+		}
+		#sideBar{
+			position: fixed;
+			width: 200px;
+			height: 96vh;
+			background-color: #F8F8F8;
+			border-radius: 2vh;
+			
+		}
+		#titleText{
+			font-size: 38px;
+			text-align: center;
+			margin-top: 10px;
+			font-weight: bold;
+			color: #A7A7A7;
+		}
+		#subText{
+			text-align: center;
+			font-size: 20px;
+			margin-top: -25px;
+			color: #A7A7A7;
+		}
+		#unlockText{
+			position: absolute;
+			width: 100%;
+			margin-left: -5px;
+			bottom: 65px;
+			text-align: center;
+			font-size: 24px;
+			font-weight: 900;
+			color: #A7A7A7;
+			z-index: 7;
+		}
+
+		#fileSelectorWrapper{
+			margin-top: 10px;
+			margin-left: 34px;
+			padding:5px 10px;
+			background:#C4C4C4;
+			position:relative;
+			color:#fff;
+			border-radius:10px;
+			text-align:center;
+			float:left;
+			cursor:pointer;
+			font-size: 20px;
+		    font-weight: 900;
+		    box-shadow: 2px 3px #A7A7A7;
+		}
+		#fileInput{
+			position: absolute;
+		    z-index: 1000;
+		    opacity: 0;
+		    cursor: pointer;
+		    right: 0;
+		    top: 0;
+		    height: 100%;
+		    font-size: 24px;
+		    width: 100%;
+
+		}
+
+		#refreshButton{
+			position: absolute;
+			width: 140px;
+			height: 240px;
+			margin-left: -140px;
+			bottom: 30px;
+			background-color: transparent;
+			outline: none;
+			border: none;
+			z-index: 8;
+
+		}
+
+		#openLockWrapper{
+			position: absolute;
+			width: 100%;
+			margin-left: 20px;
+			bottom: -30px;
+		}
+
+
+
+		#imagesWrapper{
+			margin-left: 300px;
+			margin-right: 100px;
+			height: 100%;
+
+			display: flex;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			align-items: center;
+			justify-content: center;
+		}
+		.imageWrapper{
+			background-color: #C4C4C4;
+			height: 220px;
+			width: 220px;
+			margin-left: 5px;
+			margin-right: 5px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			border-radius: 0px;
+		}
+		img{
+			object-fit: cover;
+  			width:100%;
+  			height:100%;
+		}
+		
+
+
+	</style>
+</head>
+<body>
+	
+	<div id ="lockWrapper">
+		<svg width="193" height="194" viewBox="0 0 193 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g id="Lock" filter="url(#filter0_d_15:3)">
+				<rect width="190" height="190" rx="19" fill="#E7E7E7"/>
+			</g>
+			<defs>
+			<filter id="filter0_d_15:3" x="0" y="0" width="193" height="194" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="3" dy="4"/>
+			<feComposite in2="hardAlpha" operator="out"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_15:3"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_15:3" result="shape"/>
+			</filter>
+			</defs>
+		</svg>
+	</div>
+	<div id ="spacerRect">
+		<svg width="193" height="194" viewBox="0 0 193 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<rect width="190" height="190" fill="#FFFFFF"/>
+		</svg>
+	</div>
+
+	<div id ="ringWrapper">
+		<svg width="152" height="171" viewBox="0 0 152 171" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<g id="Ring">
+			<g id="Lock Ring Shadow">
+			<path id="Lock Ring Top" d="M152 78C77 78 118.421 78 77 78C35.5786 78 77 78 2 78C2 36.5786 35.5786 3 77 3C118.421 3 152 36.5786 152 78Z" fill="#A7A7A7"/>
+			<path id="Lock Legs" d="M2 79C2 73.4772 6.47715 69 12 69H142C147.523 69 152 73.4772 152 79V104.9C152 110.423 147.523 114.9 142 114.9H132C126.477 114.9 122 110.423 122 104.9V79C122 73.4771 117.523 69 112 69H42C36.4772 69 32 73.4772 32 79V161C32 166.523 27.5228 171 22 171H12C6.47715 171 2 166.523 2 161V79Z" fill="#A7A7A7"/>
+			</g>
+			<g id="Lock Ring">
+			<path id="Lock Ring Top_2" d="M150 75C75 75 116.421 75 75 75C33.5786 75 75 75 0 75C0 33.5786 33.5786 0 75 0C116.421 0 150 33.5786 150 75Z" fill="#C4C4C4"/>
+			<path id="Lock Legs_2" d="M0 76C0 70.4772 4.47715 66 10 66H140C145.523 66 150 70.4772 150 76V101.9C150 107.423 145.523 111.9 140 111.9H130C124.477 111.9 120 107.423 120 101.9V76C120 70.4771 115.523 66 110 66H40C34.4772 66 30 70.4772 30 76V158C30 163.523 25.5228 168 20 168H10C4.47715 168 0 163.523 0 158V76Z" fill="#C4C4C4"/>
+			</g>
+			<path id="Upper Ring Shadow" d="M118 75C118 99.3005 98.3005 119 74 119C49.6995 119 30 99.3005 30 75C30 50.6995 49.6995 31 74 31C98.3005 31 118 50.6995 118 75Z" fill="#A7A7A7"/>
+			<g id="White Space">
+			<path id="White Space Ring" d="M120 78.5C120 103.077 100.301 123 76 123C51.6995 123 32 103.077 32 78.5C32 50.5 51.6995 34 76 34C100.301 34 120 53.9233 120 78.5Z" fill="white"/>
+			<rect id="Rectangle 29" x="32" y="77" width="88" height="42" fill="white"/>
+			</g>
+		</g>
+	</svg>
+	</div>
+
+	<div class="wrapper">
+		<input type="password" id="password">
+		<input type="text" id="name">
+	</div>
+
+
+	<div id ="secondPage">
+
+		<div id ="sideBar">
+
+			<h1 id ="titleText">
+				vault.html
+			</h1>
+			<h2 id ="subText"></h2>
+
+			<div id ="fileSelectorWrapper">
+				 ADD PHOTO
+				<input type ="file" id ="fileInput">
+			</div>
+
+			<h2 id ="unlockText">LOCK</h2>
+
+
+			<button id = "refreshButton" onClick="window.location.reload();"></button>
+
+
+			<div id ="openLockWrapper">
+				<svg width="150" height="349" viewBox="0 0 215 349" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M183 91C108 91 149.421 91 108 91C66.5786 91 108 91 33 91C33 49.5786 66.5786 16 108 16C149.421 16 183 49.5786 183 91Z" fill="#A7A7A7"/>
+				<path d="M33 92C33 86.4772 37.4772 82 43 82H173C178.523 82 183 86.4772 183 92V117.9C183 123.423 178.523 127.9 173 127.9H163C157.477 127.9 153 123.423 153 117.9V92C153 86.4771 148.523 82 143 82H73C67.4772 82 63 86.4772 63 92V174C63 179.523 58.5228 184 53 184H43C37.4772 184 33 179.523 33 174V92Z" fill="#A7A7A7"/>
+				<path d="M181 88C106 88 147.421 88 106 88C64.5786 88 106 88 31 88C31 46.5786 64.5786 13 106 13C147.421 13 181 46.5786 181 88Z" fill="#C4C4C4"/>
+				<path d="M31 89C31 83.4772 35.4772 79 41 79H171C176.523 79 181 83.4772 181 89V114.9C181 120.423 176.523 124.9 171 124.9H161C155.477 124.9 151 120.423 151 114.9V89C151 83.4771 146.523 79 141 79H71C65.4772 79 61 83.4772 61 89V171C61 176.523 56.5228 181 51 181H41C35.4772 181 31 176.523 31 171V89Z" fill="#C4C4C4"/>
+				<path d="M149 88C149 112.301 129.301 132 105 132C80.6995 132 61 112.301 61 88C61 63.6995 80.6995 44 105 44C129.301 44 149 63.6995 149 88Z" fill="#A7A7A7"/>
+				<path d="M151 91.5C151 116.077 131.301 136 107 136C82.6995 136 63 116.077 63 91.5C63 63.5 82.6995 47 107 47C131.301 47 151 66.9233 151 91.5Z" fill="#F8F8F8"/>
+				<rect x="63" y="90" width="88" height="46" fill="#F8F8F8"/>
+				<g filter="url(#filter0_d_15:2)">
+				<rect x="12" y="149" width="190" height="190" rx="19" fill="#E7E7E7"/>
+				</g>
+				<defs>
+				<filter id="filter0_d_15:2" x="12" y="149" width="193" height="194" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+				<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+				<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+				<feOffset dx="3" dy="4"/>
+				<feComposite in2="hardAlpha" operator="out"/>
+				<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+				<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_15:2"/>
+				<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_15:2" result="shape"/>
+				</filter>
+				</defs>
+				</svg>
+			</div>
+		</div>
+
+
+		<div id ="imagesWrapper">
+
+			<div class = "imageWrapper"><img id = "img1" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img2" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img3" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img4" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img5" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img6" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img7" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img8" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img9" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img10" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img11" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img12" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img13" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img14" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img15" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img16" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img17" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img18" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img19" src="" onerror="this.style.display='none'"></div>
+			<div class = "imageWrapper"><img id = "img20" src="" onerror="this.style.display='none'"></div>
+
+
+
+		</div>
+
+	</div>
+
+
+	
+
+
+
+	<script type="text/javascript">
+		//
+
+
+		// Add File
+
+		var storedImages = JSON.parse(localStorage.getItem("imageStorage") || '[]');
+		var images = storedImages;
+
+		var saveImageToLocalStorage = function(){
+			localStorage.setItem("imageStorage", JSON.stringify(images));
+			updateImages();
+		}
+
+
+		document.querySelector('#fileInput').addEventListener("change", function(){
+			console.log("this files = " + this.files);
+			const reader = new FileReader();
+
+			reader.addEventListener("load", () => {
+				images.push(reader.result);
+				console.log("images array = " + images)
+				console.log("images length = " + images.length)
+				saveImageToLocalStorage();
+				//when the HTML file reader loads in the selected file, it saves the photo to images then to the local storage.
+			});
+
+			//uploading is limited to one photo for now, which is why the [0] is used
+			reader.readAsDataURL(this.files[0])
+
+		});
+
+		document.addEventListener("DOMContentLoaded", () => {
+			//images = localStorage.getItem("imageStorage");
+		});
+
+
+		//content loaded
+		
+		document.addEventListener("DOMContentLoaded", () => {
+
+			console.log(images);
+			console.log(images[0]);
+			updateImages();
+			
+		})
+
+		// Load Images
+
+		var updateImages = function(){
+
+			if(images){
+				for (let counter = 0; counter < images.length; counter++){
+					document.querySelector("#img" + (counter + 1)).setAttribute("src", images[counter]);
+					document.querySelector("#img" + (counter + 1)).style.display = "block";
+				}
+			}
+		}
+
+
+
+
+		//
+
+
+		// Name 
+		const nameInput = document.querySelector('#name');
+		var nameStored = localStorage.getItem('nameStorage'); 
+		
+		if(nameInput){
+			document.getElementById("name").placeholder = nameStored;
+			document.getElementById('subText').innerText = nameStored;
+
+		}
+		
+		document.querySelector('#name').addEventListener('keypress', function (e) {
+		    if (e.key === 'Enter') {
+		    	nameStored = document.getElementById('name').value;
+		    	document.getElementById('subText').innerText = nameStored;
+		    	localStorage.setItem('nameStorage', nameStored);
+		    	this.blur();
+		    }
+		});
+		//
+
+
+		// Password
+
+		var setPassword = "1234"
+		var inputPassword = ""
+
+		document.querySelector('#password').addEventListener('keypress', function (e) {
+		    if (e.key === 'Enter') {
+		    	inputPassword = document.getElementById('password').value;
+		    	this.blur();
+				checkPassword();
+		    }
+		});
+
+		var checkPassword = function(){
+			if(inputPassword == setPassword){
+				unlockAnimation();
+			}
+			else{
+				document.getElementById('password').value = "";
+			}
+		}
+		//
+
+
+		// Password Unlock Animation
+		var unlockAnimation = function(){
+			var element = document.getElementById("ringWrapper");
+			var position = 50;
+			var id = setInterval(updateFrame, 10);
+			function updateFrame(){
+				if (position <= 42){
+					clearInterval(id);
+					fadeOut();
+				} else{
+					position = position - 0.1;
+					element.style.top = position + '1%';
+				}
+			}
+		}
+		var fadeOut = function(){
+			var element1 = document.getElementById("ringWrapper");
+			var element2 = document.getElementById("lockWrapper");
+			var element3 = document.getElementById("password");
+			var element4 = document.getElementById("name");
+			var counter = 100;
+			var opacity = 1;
+			var id = setInterval(updateFrame, 1);
+
+			function updateFrame(){
+				if(counter > 0){
+					counter --;
+					opacity = counter / 100;
+					element1.style.opacity = opacity;
+					element2.style.opacity = opacity;
+					element3.style.opacity = opacity;
+					element4.style.opacity = opacity;
+				}
+				else{
+					transitionPage();
+				}
+			}
+		}
+		var transitionPage = function(){
+			document.getElementById("ringWrapper").style.display = "none";
+			document.getElementById("lockWrapper").style.display = "none";
+			document.getElementById("password").style.display = "none";
+			document.getElementById("name").style.display = "none";
+			document.getElementById("spacerRect").style.display = "none";
+
+			
+			if(document.getElementById("secondPage").style.display != "block") fadeIn();
+		}
+		var fadeIn = function(){
+			var secondPage = document.getElementById("secondPage");
+			var counter = 0;
+			var opacity = 0;
+			var id = setInterval(updateFrame, 1);
+
+			document.getElementById("secondPage").style.backgroundColor = "#F8F8F8";
+			document.getElementById("secondPage").style.display = "block";
+			function updateFrame(){
+				if(counter < 100){
+					counter ++;
+					opacity = counter / 100;
+					secondPage.style.opacity = opacity;
+				}
+				else{
+					//transitionPage();
+				}
+			}
+		}
+		//
+
+
+
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
