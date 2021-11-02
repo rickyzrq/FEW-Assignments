@@ -1,0 +1,63 @@
+//ch6
+
+const dog = {
+  name: "Furball",
+  species: "Great Pyrenees",
+  size: "102 Pounds",
+  
+  bark(){
+    return "ill miss you";
+  }
+};
+
+
+console.log(`${dog.name} is a ${dog.species} dog measuring ${dog.size}`);
+console.log(`Look, a cat! ${dog.name} barks: ${dog.bark()}`);
+
+
+
+//7
+
+const values = [3, 11, 7, 2, 9, 10];
+let sum = 0;
+for(let i = 0; i < values.length; i++){
+  sum+= values[i];
+}
+console.log(sum);
+
+//pt2
+const values = [3, 11, 7, 2, 9, 10];
+let maxNum = 0;
+
+for(let i = 0; i < values.length; i ++){
+  if(values[i] > maxNum) maxNum = values[i];
+}
+console.log(maxNum);
+
+
+//8
+
+const word = prompt("Enter a word:");
+let mid = Math.round(word.length / 2);
+
+if(firstHalf(word, 0, mid) == secondHalf(word, word.length - mid - 1, word.length - 1)) console.log("Palindrome");
+else console.log("Not Palindrome");
+//this was overly complicated because I initally only wanted one funcion and then realized it was pointless.
+function firstHalf(w, initial, end){
+  let fh = "";
+  for(let i = initial; i < end; i++) fh += w[i];
+  return fh;
+}
+function secondHalf(w, initial, end){
+  let fh = "";
+  for(let i = end; i > initial; i--) fh += w[i];
+  return fh;
+}
+
+
+
+
+
+
+
+
