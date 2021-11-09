@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>loginMenu</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<style type="text/css">
+		*{
+			margin-left: 0;
+			margin-top: 0;
+			padding-left: 0;
+			padding-top: 0;
+		}
+		body{
+			 font-family: "Roboto", sans-serif;
+			 font-weight: bold;
+		}
+		#mainWrapper{
+			position: fixed;
+			top: 50%;
+	    	left: 50%;
+	    	transform: translate(-50%, -50%);
+	    	width: 400px;
+	    	height: 350px;
+	    	border-radius: 50px;
+	    	background-color: #8ac2ff;
+
+	    	display: flex;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			align-items: center;
+			justify-content: left;
+			vertical-align: ;
+		}
+		.signUp{
+			color: white;
+		}
+		.leftElements{
+			margin-top: 30px;
+			height: 35px;
+			width: 80%;
+			border: none;
+			border-radius: 5px;
+			padding-left: 10px;
+		}
+
+		.leftDiv{
+			margin-left: 20px;
+			margin-top: 40px;
+			width:  200px;
+		}
+
+		.vl {
+		  border-left: 6px solid green;
+		  height: 500px;
+		}
+
+		.loader {
+			display: none;
+			position: fixed;
+
+			margin-top: 65px;
+		  border: 16px solid #f3f3f3; /* Light grey */
+		  border-top: 16px solid #3498db; /* Blue */
+		  border-radius: 50%;
+		  width: 60px;
+		  height: 60px;
+		  animation: spin 2s linear infinite;
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+		#checkBox{
+			transform: scale(1.5);
+		}
+		#submitButton{
+			position: fixed;
+			margin-top: 123px;
+			margin-left: 0px;
+			height: 36px;
+			width:  162px;
+			border: none;
+			border-radius: 5px;
+			background-color: blue;
+			color: white;
+		}
+		#thanksText{
+			display: none;
+			position: fixed;
+			margin-top: 113px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id = "mainWrapper">
+		
+		<div class = "leftDiv">
+			<h1 class = "signUp">Sign Up</h1>
+			<input id = "firstName" placeholder = "First Name" class = "leftElements">
+			<input id = "lastName" placeholder = "Last Name" class = "leftElements">
+			<input id = "email" placeholder = "Email" class = "leftElements">
+		</div>
+
+
+		<div class = "rightDiv">
+
+			<div id = "loader" class="loader"></div>
+			<button id = "submitButton" onclick = "submit();">Submit</button>
+			<input type="checkbox" id="checkBox" value="Bike">
+  			<label for="checkBox"> Check</label>
+  			<p id = "thanksText">Thanks for signing up!</p>
+		</div>
+
+
+	</div>
+
+
+
+
+	<script type="text/javascript">
+
+		function submit(){
+			const e1 = document.getElementById("firstName").value;
+			const e2 = document.getElementById("lastName").value;
+			const e3 = document.getElementById("email").value;
+			const e4 = document.getElementById("checkBox").checked;
+			console.log(e1);
+			console.log(e2);
+			console.log(e3);
+			console.log(e4);
+
+
+			if(e1 === "") document.getElementById("firstName").style.outline = "1px solid red";
+			if(e2 === "") document.getElementById("lastName").style.outline = "1px solid red";
+			if(e3 === "" || validateEmail(e3) === false) document.getElementById("email").style.outline = "1px solid red";
+			if(e4 === false) document.getElementById("checkBox").style.outline = "1px solid red";
+
+			if(e1 !== "" && e2 !== "" && e3 !== "" && e4 === true){
+				passed();
+			}
+
+		}
+
+		function passed(){
+			document.getElementById("submitButton").style.display = "none";
+			document.getElementById("loader").style.display = "block";
+
+			setTimeout(function(){ document.getElementById("loader").style.display = "none"; document.getElementById("thanksText").style.display = "block"; }, 3000);
+
+			
+		}
+
+		function validateEmail(email) {
+			const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
+
+
+		/*
+		Create an HTML page that has inputs for a first name, last name, email address, and a checkbox, as well as a submit button.
+Write the javascript that does the following (the app should be written as an object, like the example above):
+When a user clicks the button, it checks to see that value is not empty (including the checkbox)
+Hint: value !== '' and checked === true
+If the input is empty, it adds a red border to the missing input
+The script should check to see if the email address entered is valid
+Hint:
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+If all values are entered correctly, the submit button should dissappear and a spinner should take its place
+Hint: CSS Loader
+After 3 seconds have passed, the spinner should be replaced with text that says "Thanks for signing up!"
+Hint: Set timeout
+When you're finished, upload a link to your Github Repo
+		*/
+		
+	</script>
+
+
+</body>
+</html>
