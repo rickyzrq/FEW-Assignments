@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let data2;
+        const data = fetch("https://dog.ceo/api/breeds/image/random")
+            .then(data => data.json())
+            .then(doggos => data2 = doggos)
+            .catch(e => console.error("Promise was rejected", e));
+
+        function fetchData() {
+            console.log(data2);
+            console.log(data2.message);
+            document.getElementById("dogImg").src = data2.message;
+        }
+
+    </script>
+</head>
+
+<body>
+    <img id="dogImg" src="">
+    <button onClick="fetchData();">Click me</button>
+</body>
+
+</html>
