@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYT API</title>
+
+    <style>
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h3>The New York Times Movie Reviews Search Engine API</h3>
+        <p>Ricky Zhang</p>
+        <input id="searchBox" placeholder="Search NYT">
+        <button onclick="fetchData();">Search</button>
+    </div>
+
+    <h1 id="title1"></h1>
+    <div id="endDiv" class="line"></div>
+
+    <script>
+        let fetchedData;
+        let data;
+        function fetchData() {
+
+            let search = document.getElementById("searchBox").value;
+            console.log("https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + search + "&api-key=uwpqqwdCCcmFMQzqRUoXkU4JJfYg6Ad5");
+            data = fetch("https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + search + "&api-key=uwpqqwdCCcmFMQzqRUoXkU4JJfYg6Ad5")
+                .then(data => data.json())
+                .then(tempData => {
+                    fetchedData = tempData
+                    console.log(fetchedData);
+                    for (let i = 0; i < fetchedData.num_results; i++) {
+                        addDOM(String(fetchedData.results[i].display_title),
+                            String(fetchedData.results[i].byline),
+                            String(fetchedData.results[i].publication_date),
+                            String(fetchedData.results[i].mpaa_rating),
+                            String(fetchedData.results[i].summary_short),
+                        );
+                    }
+                })
+                .catch(e => console.error("Promise was rejected", e));
+        }
+
+        function addDOM(title, author, date, rating, summary) {
+            let wrapper = document.createElement("div");
+            let line = document.createElement("div");
+            line.className = "line";
+
+            let titleElement = document.createElement("H1")
+            let titleText = document.createTextNode(title);
+            let authorElement = document.createElement("H2")
+            let authorName = document.createTextNode(author);
+            let dateElement = document.createElement("p")
+            let dateNum = document.createTextNode(date);
+            let ratingElement = document.createElement("p")
+            let ratingInfo = document.createTextNode(rating);
+            let summaryElement = document.createElement("p")
+            let summaryText = document.createTextNode('Summary: "' + summary + '"');
+
+            titleElement.appendChild(titleText);
+            authorElement.appendChild(authorName);
+            dateElement.appendChild(dateNum);
+            ratingElement.appendChild(ratingInfo);
+            summaryElement.appendChild(summaryText);
+
+            wrapper.appendChild(line);
+            wrapper.appendChild(titleElement);
+            wrapper.appendChild(authorElement);
+            wrapper.appendChild(dateElement);
+            wrapper.appendChild(ratingElement);
+            wrapper.appendChild(summaryElement);
+
+            //add to end
+            const currentDiv = document.getElementById("endDiv");
+            document.body.insertBefore(wrapper, currentDiv);
+        }
+
+    </script>
+</body>
+
+</html>
