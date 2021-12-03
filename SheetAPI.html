@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheets</title>
+
+    <style>
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Top Names In North America</h1>
+    <button onclick="fetchData();">Search</button>
+    <p></p>
+    <div id = "endDiv" class = "line"></div>
+    
+    <script>
+        let fetchedData;
+        let data;
+        function fetchData() {
+            console.log(fetch("https://sheetdb.io/api/v1/x1oy8tp5u9hvj"));
+            data = fetch("https://sheetdb.io/api/v1/x1oy8tp5u9hvj")
+                .then(data => data.json())
+                .then(tempData => {
+                    fetchedData = tempData
+                    console.log(fetchedData);
+                    for (let i = 0; i < fetchedData.length; i++) {
+                        addDOM(String((i + 1) + ": " + fetchedData[i].parsedString));
+                        console.log(fetchedData[i].parsedString);
+                    }
+                })
+                .catch(e => console.error("Promise was rejected", e));
+        }
+        function addDOM(title){
+            let wrapper = document.createElement("div");
+            let line = document.createElement("div");
+            line.className = "line";
+
+            let titleElement = document.createElement("H2")
+            let titleText = document.createTextNode(title);
+            
+            titleElement.appendChild(titleText);
+            
+            wrapper.appendChild(line);
+            wrapper.appendChild(titleElement);
+
+            //add to end
+            const currentDiv = document.getElementById("endDiv");
+            document.body.insertBefore(wrapper, currentDiv);
+        }
+
+
+
+    </script>
+</body>
+</html>
