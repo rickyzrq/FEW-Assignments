@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,16 +15,40 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <h1>Top Names In North America</h1>
+
+    <div>
+        <input id="nameInput" placeholder="Add Name">
+        <button onclick="addName();">Add</button>
+        <p></p>
+    </div>
+
     <button onclick="fetchData();">Search</button>
     <p></p>
-    <div id = "endDiv" class = "line"></div>
-    
+    <div id="endDiv" class="line"></div>
+
+
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         let fetchedData;
         let data;
+
+
+        function addName() {
+            let name = document.getElementById("nameInput").value;
+            axios.post('https://sheetdb.io/api/v1/x1oy8tp5u9hvj', {
+                INCREMENT: { "parsedString": name }
+            }).then(response => {
+                console.log(response.data);
+            });
+            fetchData();
+        }
         function fetchData() {
             console.log(fetch("https://sheetdb.io/api/v1/x1oy8tp5u9hvj"));
             data = fetch("https://sheetdb.io/api/v1/x1oy8tp5u9hvj")
@@ -38,16 +63,16 @@
                 })
                 .catch(e => console.error("Promise was rejected", e));
         }
-        function addDOM(title){
+        function addDOM(title) {
             let wrapper = document.createElement("div");
             let line = document.createElement("div");
             line.className = "line";
 
             let titleElement = document.createElement("H2")
             let titleText = document.createTextNode(title);
-            
+
             titleElement.appendChild(titleText);
-            
+
             wrapper.appendChild(line);
             wrapper.appendChild(titleElement);
 
@@ -60,4 +85,5 @@
 
     </script>
 </body>
+
 </html>
