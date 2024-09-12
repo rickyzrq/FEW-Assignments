@@ -151,6 +151,38 @@
 		    width: 100%;
 
 		}
+		#dark-mode{
+			margin-top: 30px;
+			margin-left: 38px;
+			padding:5px 10px;
+			background:#C4C4C4;
+			position:relative;
+			color:#fff;
+			border-radius:10px;
+			border: none;
+			text-align:center;
+			float:left;
+			cursor:pointer;
+			font-size: 20px;
+		    font-weight: 900;
+		    box-shadow: 2px 3px #A7A7A7;
+		}
+		#blue-mode{
+			margin-top: 30px;
+			margin-left: 38px;
+			padding:5px 10px;
+			background:#C4C4C4;
+			position:relative;
+			color:#fff;
+			border-radius:10px;
+			border: none;
+			text-align:center;
+			float:left;
+			cursor:pointer;
+			font-size: 20px;
+		    font-weight: 900;
+		    box-shadow: 2px 3px #A7A7A7;
+		}
 
 		#refreshButton{
 			position: absolute;
@@ -271,6 +303,9 @@
 				<input type ="file" id ="fileInput">
 			</div>
 
+			<button id = "dark-mode">Dark Mode</button>
+			<button id = "blue-mode">Blue Mode</button>
+
 			<h2 id ="unlockText">LOCK</h2>
 
 
@@ -335,13 +370,25 @@
 	</div>
 
 
-	
-
 
 
 	<script type="text/javascript">
+		// Initial setup
+		document.getElementById("dark-mode").addEventListener("click", darkMode);
+		document.getElementById("blue-mode").addEventListener("click", blueMode);
+
 		//
 
+		//dark mode
+
+		function darkMode(){
+			document.getElementById("secondPage").style.backgroundColor = "#292933";
+		}
+		function blueMode(){
+			document.getElementById("secondPage").style.backgroundColor = "#23d6fa";
+		}
+
+		//
 
 		// Add File
 
